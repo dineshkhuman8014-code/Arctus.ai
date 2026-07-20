@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Config (user's local keys live here)
+.config/
+
+# Sessions (user's local state)
+sessions/
+
+# Logs
+*.log
+
+# Coverage / test
+.coverage
+htmlcov/
+.pytest_cache/

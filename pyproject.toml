@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arctus-ai"
+version = "0.1.0"
+description = "Local-first multi-agent orchestrator (Plan -> Validate -> Execute -> Verify). Standard library only."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "Arctus" }]
+keywords = ["multi-agent", "orchestrator", "llm", "openai-compatible", "ollama", "cli"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = []
+
+[project.optional-dependencies]
+server = ["fastapi", "uvicorn"]
+openai = ["openai"]
+
+[project.scripts]
+arctus = "main:main"
+
+[tool.setuptools]
+packages = ["arctus"]
+py-modules = ["main"]

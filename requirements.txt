@@ -1,0 +1,9 @@
+# Arctus.ai has zero runtime third-party dependencies.
+# It uses only the Python standard library (urllib, json, dataclasses, etc.).
+#
+# Optional, only if you want them:
+#   - "openai" if you'd rather use the official SDK than the built-in urllib client
+#   - "fastapi" + "uvicorn" if you want to expose arctus as a local HTTP service
+#
+# Install nothing extra to run as-is:
+#   python main.py
