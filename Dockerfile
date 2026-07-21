@@ -14,4 +14,7 @@ RUN pip install --no-cache-dir -e ".[server]"
 
 EXPOSE 7860 20128
 
+ENV OPENAI_API_BASE="http://localhost:20128/v1"
+ENV OPENAI_API_KEY="free-local-key"
+
 CMD omniroute & python -m server.app
