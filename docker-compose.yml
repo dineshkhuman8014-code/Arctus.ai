@@ -1,0 +1,48 @@
+# Arctus.ai — user-side compose
+#
+# Two services + OmniRoute bundled inside the arctus-server container:
+#   arctus-server  : orchestrator (port 7860) + OmniRoute (port 20128)
+#
+# OmniRoute is pre-installed and auto-starts inside the container. It exposes
+# an OpenAI-compatible API at http://localhost:20128/v1. The Arctus fast tier
+# points at it by default.
+#
+# The ./repos volume (populated by `python scripts/clone_repos.py`) is mounted
+# read-only so agents can read reference repos.
+#
+# Usage:
+#   1. git clone this repo, cd into it
+#   2. (once) python scripts/clone_repos.py            # fills ./repos (opt-in)
+#   3. (optional) set your keys in .env
+#   4. docker compose up
+#
+# .env example:
+#   OPENAI_API_KEY=sk-...
+#   OPENROUTER_API_KEY=sk-or-...
+
+services:
+  arctus-server:
+    build: .
+    container_name: arctus-server
+    ports:
+      - "7860:7860"     # Arctus dashboard / API
+      - "20128:20128"   # OmniRoute (local 160+ provider router)
+    environment:
+      # Provider keys come from the host env / .env — never from clients.
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      ARCTUS_OMNIROUTE_KEY: ${ARCTUS_OMNIROUTE_KEY:-}
+      # Fast tier -> OmniRoute (bundled, port 20128 inside container)
+      ARCTUS_FAST_BASE_URL: http://localhost:20128/v1
+      ARCTUS_FAST_MODEL: ${ARCTUS_FAST_MODEL:-llama3.2}
+      # Strong tier -> OpenAI (or override to OmniRoute/OpenRouter via .env)
+      ARCTUS_STRONG_BASE_URL: ${ARCTUS_STRONG_BASE_URL:-https://api.openai.com/v1}
+      ARCTUS_STRONG_MODEL: ${ARCTUS_STRONG_MODEL:-gpt-4o-mini}
+      PORT: "7860"
+    volumes:
+      - arctus-data:/data
+      - ./repos:/repos:ro          # reference repos, read-only
+    restart: unless-stopped
+
+volumes:
+  arctus-data:

@@ -1,0 +1,57 @@
+# Arctus.ai reference repos
+#
+# These are THIRD-PARTY repositories. Arctus does NOT clone them automatically.
+# Run `python scripts/clone_repos.py` once to fetch them into ./repos (opt-in).
+# Agents can then read from ./repos as grounding material.
+#
+# Cloning is opt-in because some of these are large (resource lists, npm pkgs).
+# You take responsibility for the licenses of each repo you clone.
+
+repos:
+  - name: airllm
+    url: https://github.com/lyogavin/airllm.git
+    note: "Inference of large models across limited VRAM"
+
+  - name: MiniCode
+    url: https://github.com/LiuMengxuan04/MiniCode.git
+    note: "Minimal coding agent"
+
+  - name: ponytail
+    url: https://github.com/DietrichGebert/ponytail.git
+    note: "Research project"
+
+  - name: agency-agents
+    url: https://github.com/msitarzewski/agency-agents.git
+    note: "Agent patterns"
+
+  - name: Agent-Reach
+    url: https://github.com/Panniantong/Agent-Reach.git
+    note: "Agent reach/extensibility"
+
+  - name: colibri
+    url: https://github.com/JustVugg/colibri.git
+    note: "Lightweight tooling"
+
+  - name: skills
+    url: https://github.com/vercel-labs/skills.git
+    note: "Vercel skills library"
+
+  - name: awesome-android-ui
+    url: https://github.com/wasabeef/awesome-android-ui.git
+    note: "Android UI catalog (large)"
+
+  - name: design-resources-for-developers
+    url: https://github.com/bradtraversy/design-resources-for-developers.git
+    note: "Design resource list (large)"
+
+  - name: react-three-fiber
+    url: https://github.com/pmndrs/react-three-fiber.git
+    note: "React renderer for Three.js"
+
+  - name: awesome-design-md
+    url: https://github.com/VoltAgent/awesome-design-md.git
+    note: "Design system docs"
+
+  - name: drei
+    url: https://github.com/pmndrs/drei.git
+    note: "Helpers for react-three-fiber"

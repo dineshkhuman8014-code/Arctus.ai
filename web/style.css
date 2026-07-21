@@ -1,0 +1,166 @@
+/* Arctus.ai — Mini 3D Glassmorphism theme */
+:root {
+  --bg: #0a0e1a;
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --accent: #00e5ff;
+  --accent-soft: rgba(0, 229, 255, 0.18);
+  --text: #e6f1ff;
+  --text-dim: #9fb3c8;
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  overflow-x: hidden;
+}
+
+/* Ambient glow */
+.bg-glow {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(0, 229, 255, 0.18), transparent 42%),
+    radial-gradient(circle at 82% 70%, rgba(139, 92, 246, 0.16), transparent 45%);
+  z-index: -1;
+  animation: drift 16s ease-in-out infinite alternate;
+}
+@keyframes drift {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(0, -18px, 0); }
+}
+
+/* Glass base */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px) saturate(140%);
+  -webkit-backdrop-filter: blur(15px) saturate(140%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: var(--glass-shadow);
+}
+
+.main-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.topbar { margin-bottom: 24px; }
+.topbar h1 { font-size: 28px; letter-spacing: 0.5px; }
+.subtitle { color: var(--text-dim); font-size: 13px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.card { padding: 18px; }
+.card h2 { font-size: 15px; margin-bottom: 12px; color: var(--accent); letter-spacing: 0.4px; }
+.kv { font-size: 13px; color: var(--text-dim); line-height: 1.6; min-height: 48px; }
+
+.btn {
+  margin-top: 12px;
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 13px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 14px var(--accent-soft);
+  background: rgba(0, 229, 255, 0.08);
+}
+.btn.primary {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--text);
+}
+.connector-btn {
+  background: rgba(0, 255, 255, 0.12);
+  border-color: rgba(0, 229, 255, 0.4);
+}
+
+.chat { padding: 18px; }
+.chat h2 { font-size: 15px; margin-bottom: 12px; color: var(--accent); }
+.log {
+  min-height: 180px;
+  max-height: 320px;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  padding: 12px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+.log .entry { margin-bottom: 6px; }
+.log .entry .t { color: var(--accent); margin-right: 6px; }
+
+.chat-bar {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+.chat-bar input {
+  flex: 1;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+}
+.chat-bar input:focus { border-color: var(--accent); box-shadow: 0 0 12px var(--accent-soft); }
+
+/* Modal */
+.modal {
+  position: fixed; inset: 0;
+  background: rgba(5, 8, 16, 0.72);
+  backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 10;
+}
+.modal.hidden { display: none; }
+.modal-card {
+  width: min(440px, 92vw);
+  padding: 24px;
+}
+.modal-card h2 { font-size: 18px; margin-bottom: 16px; color: var(--accent); }
+.modal-card label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+.modal-card input, .modal-card select {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 9px 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 13px;
+}
+.modal-actions {
+  display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px;
+}

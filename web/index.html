@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arctus.ai — Glassmorphism Dashboard</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="bg-glow"></div>
+
+  <main class="glass-panel main-container">
+    <header class="topbar">
+      <h1>🝔 Arctus.ai</h1>
+      <span class="subtitle">Multi-agent orchestration · Plan → Validate → Execute → Verify</span>
+    </header>
+
+    <section class="grid">
+      <!-- Agents card -->
+      <div class="glass-panel card">
+        <h2>Agents</h2>
+        <div id="agent-summary" class="kv">Loading…</div>
+        <button class="btn" onclick="refreshAgents()">Refresh</button>
+      </div>
+
+      <!-- MCP connectors card -->
+      <div class="glass-panel card">
+        <h2>MCP Connectors</h2>
+        <div id="mcp-list" class="kv">Loading…</div>
+        <button class="btn connector-btn" onclick="openMCPModal()">+ Add Connector</button>
+      </div>
+
+      <!-- Federation card -->
+      <div class="glass-panel card">
+        <h2>Federation Peers</h2>
+        <div id="peer-list" class="kv">Loading…</div>
+        <button class="btn" onclick="refreshPeers()">Refresh</button>
+      </div>
+    </section>
+
+    <!-- Chat / orchestrate -->
+    <section class="glass-panel chat">
+      <h2>Task</h2>
+      <div id="log" class="log"></div>
+      <div class="chat-bar">
+        <input id="prompt" type="text" placeholder="Describe a task for the swarm…" />
+        <button class="btn primary" onclick="submitTask()">Run</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- MCP modal -->
+  <div id="mcp-modal" class="modal hidden">
+    <div class="glass-panel modal-card">
+      <h2>Add MCP Connector</h2>
+      <label>Name <input id="mcp-name" type="text" placeholder="github" /></label>
+      <label>Transport
+        <select id="mcp-transport">
+          <option value="http">http</option>
+          <option value="stdio">stdio</option>
+        </select>
+      </label>
+      <label>URL (http) <input id="mcp-url" type="text" placeholder="https://mcp.example.com/jsonrpc" /></label>
+      <label>Command (stdio) <input id="mcp-command" type="text" placeholder="/usr/local/bin/mcp-server" /></label>
+      <label>API key (optional) <input id="mcp-key" type="password" /></label>
+      <label>Tools (comma-separated) <input id="mcp-tools" type="text" placeholder="search,read,write" /></label>
+      <div class="modal-actions">
+        <button class="btn" onclick="closeMCPModal()">Cancel</button>
+        <button class="btn primary" onclick="addMCPConnector()">Connect</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
